@@ -1,4 +1,4 @@
-# _Name of the project_
+# _Currency exchanger_
 
 #### By _**Viktoriia Zubarieva**_
 ## Description

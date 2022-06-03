@@ -1,15 +1,43 @@
-<!DOCTYPE html>
-<html>
+<html lang="en-US">
 
 <head>
-  <title>Shape Tracker</title>
+  <title>Currency exchanger</title>
 </head>
 
 <body>
+  <div class="container">
+    <h1>Check foreign currency exchange rate</h1>
+
+    <label for="amount">Enter the amount</label>
+    <input id="amount" value="1" placeholder="Enter amount" type="number">
+
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputConvertFrom">From</label>
+      <select class="form-select" id="convertFrom">
+        <option value="USD" selected>USD</option>
+        <option value="UAH">UAH</option>
+      </select>
+    </div>
 
 
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputConvertTo">To</label>
+      <select class="form-select" id="convertTo">
+        <option selected>Choose currency</option>
+        <option value="UAH">UAH - Ukrainian Hryvnia</option>
+        <option value="AUD">AUD - Australian Dollar</option>
+        <option value="CAD">CAD - Canadian Dollar</option>
+        <option value="EUR">EUR - Euro</option>
+        <option value="PGK">PGK - Papua New Guinean Kina</option>
+      </select>
+    </div>
 
-  <!-- template of img <img src="assets/images/stock-puppy-photo.jpg" alt="such a pup!"> -->
+
+    <button class="btn-success" id="exchange">Exchange</button>
+    <div class="showErrors"></div>
+    <div class="showResult d-flex align-content-start flex-wrap"></div>
+
+  </div>
 </body>
 
 </html>

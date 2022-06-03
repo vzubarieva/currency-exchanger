@@ -2,19 +2,39 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-// import Triangle from './js/triangle.js';
+import CurrencyService from './currency-service.js';
 
-// $(function () {
-//   $('#triangle-checker-form').on("submit", function (event) {
-//     event.preventDefault();
-//     console.log('hello');
-//     const length1 = parseInt($('#length1').val());
-//     const length2 = parseInt($('#length2').val());
-//     const length3 = parseInt($('#length3').val());
-//     const triangle = new Triangle(length1, length2, length3);
-//     const response = triangle.checkType();
-//     $('#response').append(`<p>${response}</p>`);
-//   });
- 
-// let request = new XMLHttpRequest();
-// const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
+function clearFields() {
+  $('#amount').val("");
+  $('#convertFrom').val("USD");
+  $('#convertTo').val("");
+  $('.showErrors').text("");
+  $('.showResult').text("");
+}
+
+$(function () {
+  $('#exchange').on("click", function () {
+
+    const amount = $('#amount').val();
+    const convertFrom = $('#convertFrom').val();
+    const convertTo = $('#convertTo').val();
+
+    clearFields();
+    let promise = CurrencyService.getCurrencyExchange(convertFrom);
+
+    promise.then(function (response) {
+      const body = JSON.parse(response);
+      console.log(body)
+      const exchangeRate = body.conversion_rates[convertTo];
+      $(".showResult").text(exchangeRate * amount)
+
+    }, function (error) {
+      $('.showErrors').text(`There was an error processing your request: ${error}`);
+    });
+  });
+
+
+
+});
+
+
