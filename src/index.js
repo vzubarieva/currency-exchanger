@@ -26,8 +26,9 @@ $(function () {
       const body = JSON.parse(response);
       console.log(body)
       const exchangeRate = body.conversion_rates[convertTo];
-      $(".showResult").text(exchangeRate * amount)
-
+      if (amount && exchangeRate) {
+        $(".showResult").text(exchangeRate * amount)
+      }
     }, function (error) {
       $('.showErrors').text(`There was an error processing your request: ${error}`);
     });
