@@ -5,9 +5,8 @@ import './css/styles.css';
 import CurrencyService from './currency-service.js';
 
 function clearFields() {
-  $('#amount').val("");
+  $('#amount').val("1");
   $('#convertFrom').val("USD");
-  $('#convertTo').val("");
   $('.showErrors').text("");
   $('.showResult').text("");
 }
@@ -28,6 +27,10 @@ $(function () {
       const exchangeRate = body.conversion_rates[convertTo];
       if (amount && exchangeRate) {
         $(".showResult").text(exchangeRate * amount)
+      } else if (!exchangeRate) {
+        $('.showErrors').text(`The currency ${convertTo} doesn't exist`);
+      } else if (!amount) {
+        $('.showErrors').text(`Please enter the amount`);
       }
     }, function (error) {
       $('.showErrors').text(`There was an error processing your request: ${error}`);
