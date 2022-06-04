@@ -1,9 +1,13 @@
-body {
-  background-color: aqua;
+.image {
+  background: #fff url('../../assets/image/t.jpg') no-repeat fixed center ;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
-.container {
-  text-align: left; 
-  padding: 50px;
-  margin: auto;
+h1 {
+  color: green
 }
+
+
+
