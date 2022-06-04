@@ -19,7 +19,7 @@ $(function () {
     const convertTo = $('#convertTo').val();
 
     clearFields();
-    let promise = CurrencyService.getCurrencyExchange(convertFrom + 'q');
+    let promise = CurrencyService.getCurrencyExchange(convertFrom);
 
     promise.then(function (response) {
       const exchangeRate = response.conversion_rates[convertTo];
