@@ -12,21 +12,19 @@ function clearFields() {
 }
 
 $(function () {
-  $('#exchange').on("click", function () {
-
+  $('#exchange').on("click", function (event) {
+    event.preventDefault();
     const amount = $('#amount').val();
     const convertFrom = $('#convertFrom').val();
     const convertTo = $('#convertTo').val();
 
     clearFields();
-    let promise = CurrencyService.getCurrencyExchange(convertFrom);
+    let promise = CurrencyService.getCurrencyExchange(convertFrom + 'q');
 
     promise.then(function (response) {
-      const body = JSON.parse(response);
-      console.log(body)
-      const exchangeRate = body.conversion_rates[convertTo];
+      const exchangeRate = response.conversion_rates[convertTo];
       if (amount && exchangeRate) {
-        $(".showResult").text(exchangeRate * amount)
+        $(".showResult").text(`${exchangeRate * amount} ${convertTo}`)
       } else if (!exchangeRate) {
         $('.showErrors').text(`The currency ${convertTo} doesn't exist`);
       } else if (!amount) {
@@ -36,9 +34,6 @@ $(function () {
       $('.showErrors').text(`There was an error processing your request: ${error}`);
     });
   });
-
-
-
 });
 
 
